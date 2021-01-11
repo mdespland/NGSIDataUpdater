@@ -1,0 +1,58 @@
+openapi: '3.0.2'
+info:
+  title: NGSI Data Updater
+  version: '1.0'
+servers:
+  - url: /api
+paths: {}
+security:
+  - XAuthToken: []
+components:
+  securitySchemes:
+    XAuthToken:
+      type: apiKey
+      in: header
+      name: X-Auth-Token
+  schemas:
+    Error:
+      type: object
+      properties:
+        code: 
+          type: integer
+        message:
+          type: string
+    Status:
+      type: object
+      required:
+        - name
+        - version
+      properties:
+        name:
+          type: string
+        version:
+          type: string
+    SubscriptionCall:
+      type: object
+      required:
+        - subscriptionId
+        - data
+      properties:
+        subscriptionId:
+          type: string
+        data:
+          type: array
+          items: 
+            type: object
+    OrionErrorMessage:
+      type: object
+      properties:
+        message:
+          type: string
+        expected:
+          type: number
+        length:
+          type: number
+        limit:
+          type: number
+        type:
+          type: string
